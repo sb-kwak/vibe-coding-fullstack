@@ -37,4 +37,14 @@ public class PostService {
         return postRepository.findByNo(no)
                 .orElseThrow(() -> new IllegalArgumentException("게시글을 찾을 수 없습니다: " + no));
     }
+
+    public void addPost(String title, String content) {
+        Post post = new Post();
+        post.setTitle(title);
+        post.setContent(content);
+        post.setCreatedAt(LocalDateTime.now());
+        post.setUpdatedAt(null);
+        post.setViews(0);
+        postRepository.save(post);
+    }
 }

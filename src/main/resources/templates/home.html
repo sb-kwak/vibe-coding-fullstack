@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>바이브코딩 - 코딩의 바이브를 더하다</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "samsung-blue": "#2189ff",
+                        "background-light": "#ffffff",
+                        "background-dark": "#000000",
+                        "card-light": "#f7f7f7",
+                        "card-dark": "#121212"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+        }
+
+        .glass-nav {
+            background: rgba(16, 22, 34, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300 overflow-x-hidden bg-white dark:bg-black">
+    <!-- Navigation Bar -->
+    <header
+        class="fixed top-0 left-0 right-0 z-50 border-b border-gray-100 dark:border-zinc-900 bg-white/80 dark:bg-black/80 backdrop-blur-xl">
+        <div class="max-w-[1440px] mx-auto px-10 h-14 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="text-lg font-bold tracking-tighter text-black dark:text-white uppercase">Vibe Coding</span>
+            </div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-[13px] font-medium text-gray-600 dark:text-gray-300 hover:text-samsung-blue transition-colors"
+                    href="#features">기능</a>
+                <a class="text-[13px] font-medium text-gray-600 dark:text-gray-300 hover:text-samsung-blue transition-colors"
+                    href="#curriculum">커리큘럼</a>
+                <a class="text-[13px] font-medium text-gray-600 dark:text-gray-300 hover:text-samsung-blue transition-colors"
+                    href="#community">커뮤니티</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <button class="text-[13px] font-semibold text-black dark:text-white">로그인</button>
+                <button
+                    class="bg-black dark:bg-white text-white dark:text-black text-[13px] font-bold px-5 py-1.5 rounded-full hover:opacity-80 transition-all">
+                    시작하기
+                </button>
+            </div>
+        </div>
+    </header>
+    <main class="pt-16">
+        <!-- Hero Section -->
+        <section class="relative bg-white dark:bg-black overflow-hidden">
+            <div class="max-w-[1440px] mx-auto px-10 pt-32 pb-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="flex flex-col gap-6">
+                    <div class="text-samsung-blue text-sm font-bold tracking-widest uppercase">2024 New Curriculum</div>
+                    <h1 class="text-5xl lg:text-7xl font-bold tracking-tight text-black dark:text-white leading-[1.05]">
+                        코딩의 바이브를<br />더하다
+                    </h1>
+                    <p class="text-lg text-gray-500 dark:text-zinc-400 max-w-lg">
+                        단순한 학습을 넘어 실전 프로젝트로 성장하세요. 당신의 잠재력을 깨우는 프리미엄 개발자 교육 환경을 제공합니다.
+                    </p>
+                    <div class="flex gap-4 pt-4">
+                        <button
+                            class="bg-samsung-blue text-white text-base font-bold px-8 py-3 rounded-full hover:opacity-90 transition-all">지금
+                            무료 체험하기</button>
+                        <button
+                            class="border border-black dark:border-white text-black dark:text-white text-base font-bold px-8 py-3 rounded-full hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all">더
+                            알아보기</button>
+                    </div>
+                </div>
+                <div class="relative flex justify-center">
+                    <div class="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
+                        <img alt="Premium Tech Shot" class="w-full h-full object-cover" src="{{DATA:IMAGE:IMAGE_4}}" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Features Section -->
+        <section class="py-32 bg-[#f4f4f4] dark:bg-zinc-950" id="features">
+            <div class="max-w-[1440px] mx-auto px-10">
+                <div class="text-center mb-24">
+                    <h2 class="text-4xl lg:text-5xl font-bold text-black dark:text-white tracking-tight">왜 바이브코딩인가요?
+                    </h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-zinc-900 p-10 rounded-3xl transition-all hover:shadow-xl">
+                        <div class="mb-8 text-samsung-blue"><span
+                                class="material-symbols-outlined text-4xl">psychology</span></div>
+                        <h4 class="text-2xl font-bold mb-4 text-black dark:text-white">인터랙티브 강의</h4>
+                        <p class="text-gray-500 dark:text-zinc-400 leading-relaxed">강의만 듣는 것이 아닙니다. 브라우저에서 직접 코드를 입력하고
+                            실시간으로 피드백을 받는 몰입형 학습 경험을 선사합니다.</p>
+                    </div>
+                    <div class="bg-white dark:bg-zinc-900 p-10 rounded-3xl transition-all hover:shadow-xl">
+                        <div class="mb-8 text-samsung-blue"><span
+                                class="material-symbols-outlined text-4xl">groups</span></div>
+                        <h4 class="text-2xl font-bold mb-4 text-black dark:text-white">강력한 커뮤니티</h4>
+                        <p class="text-gray-500 dark:text-zinc-400 leading-relaxed">혼자 하면 포기하기 쉽습니다. 24시간 활성화된 슬랙 채널과
+                            정기적인 스터디를 통해 함께 성장하는 동료들을 만나세요.</p>
+                    </div>
+                    <div class="bg-white dark:bg-zinc-900 p-10 rounded-3xl transition-all hover:shadow-xl">
+                        <div class="mb-8 text-samsung-blue"><span
+                                class="material-symbols-outlined text-4xl">rocket_launch</span></div>
+                        <h4 class="text-2xl font-bold mb-4 text-black dark:text-white">실전 프로젝트</h4>
+                        <p class="text-gray-500 dark:text-zinc-400 leading-relaxed">이론 학습은 기본입니다. 실제 서비스 수준의 프로젝트를 설계하고
+                            배포하며 당신만의 독보적인 포트폴리오를 완성하세요.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Testimonials Section -->
+        <section class="py-32 bg-white dark:bg-black" id="community">
+            <div class="max-w-[1440px] mx-auto px-10">
+                <div class="flex justify-between items-end mb-16">
+                    <h2 class="text-4xl lg:text-5xl font-bold text-black dark:text-white tracking-tight">수강생들의 생생한 후기
+                    </h2>
+                    <div class="flex gap-2">
+                        <button
+                            class="w-12 h-12 rounded-full border border-gray-200 dark:border-zinc-800 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-zinc-900"><span
+                                class="material-symbols-outlined">chevron_left</span></button>
+                        <button
+                            class="w-12 h-12 rounded-full border border-gray-200 dark:border-zinc-800 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-zinc-900"><span
+                                class="material-symbols-outlined">chevron_right</span></button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="p-10 rounded-3xl bg-[#f7f7f7] dark:bg-zinc-900">
+                        <div class="flex text-samsung-blue mb-6">
+                            <span class="material-symbols-outlined font-fill">star</span><span
+                                class="material-symbols-outlined font-fill">star</span><span
+                                class="material-symbols-outlined font-fill">star</span><span
+                                class="material-symbols-outlined font-fill">star</span><span
+                                class="material-symbols-outlined font-fill">star</span>
+                        </div>
+                        <p class="text-xl font-medium text-black dark:text-white mb-8 italic">"비전공자로서 코딩 독학이 정말 막막했는데,
+                            바이브코딩의 커뮤니티 덕분에 끝까지 완주할 수 있었습니다."</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-gray-300"></div>
+                            <div><span class="font-bold text-black dark:text-white">김개발님</span>
+                                <p class="text-xs text-gray-500">프론트엔드 개발자</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-10 rounded-3xl bg-[#f7f7f7] dark:bg-zinc-900">
+                        <div class="flex text-samsung-blue mb-6">
+                            <span class="material-symbols-outlined font-fill">star</span><span
+                                class="material-symbols-outlined font-fill">star</span><span
+                                class="material-symbols-outlined font-fill">star</span><span
+                                class="material-symbols-outlined font-fill">star</span><span
+                                class="material-symbols-outlined font-fill">star</span>
+                        </div>
+                        <p class="text-xl font-medium text-black dark:text-white mb-8 italic">"실제 현업 기술 스택을 그대로 다루는 점이
+                            놀라웠습니다. 면접에서도 자신 있게 프로젝트를 설명할 수 있었습니다."</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-gray-300"></div>
+                            <div><span class="font-bold text-black dark:text-white">이현업님</span>
+                                <p class="text-xs text-gray-500">풀스택 개발자</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Final CTA Section -->
+        <section class="py-20">
+            <div class="max-w-[1440px] mx-auto px-10">
+                <div class="bg-black text-white rounded-[40px] p-20 text-center relative overflow-hidden">
+                    <h2 class="text-4xl lg:text-6xl font-bold mb-8 tracking-tight">지금 바로 코딩의 바이브에<br />합류하세요.</h2>
+                    <p class="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">첫 7일 무료 체험. 수많은 선배 개발자들이 증명한 바이브코딩만의 커리큘럼을
+                        직접 확인하세요.</p>
+                    <button
+                        class="bg-white text-black text-lg font-bold px-12 py-4 rounded-full hover:bg-gray-200 transition-all">무료로
+                        시작하기</button>
+                    <p class="mt-6 text-sm text-gray-500">카드 등록 없이 바로 시작 가능합니다.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-950 pt-20 pb-10 border-t border-slate-200 dark:border-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-12 mb-16">
+                <div class="col-span-2">
+                    <div class="flex items-center gap-2 text-primary mb-6">
+                        <span class="material-symbols-outlined text-3xl font-bold">code_blocks</span>
+                        <span class="text-xl font-bold tracking-tight text-slate-900 dark:text-white uppercase">Vibe
+                            Coding</span>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 max-w-xs mb-8">
+                        당신의 열정에 실무의 감각을 더합니다. 대한민국 No.1 개발자 부트캠프 바이브코딩.
+                    </p>
+                    <div class="flex gap-4">
+                        <a class="w-10 h-10 rounded-full border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all"
+                            href="#">
+                            <span class="material-symbols-outlined text-xl">language</span>
+                        </a>
+                        <a class="w-10 h-10 rounded-full border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all"
+                            href="#">
+                            <span class="material-symbols-outlined text-xl">share</span>
+                        </a>
+                        <a class="w-10 h-10 rounded-full border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all"
+                            href="#">
+                            <span class="material-symbols-outlined text-xl">alternate_email</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h6 class="font-bold text-slate-900 dark:text-white mb-6 uppercase tracking-wider text-xs">서비스</h6>
+                    <ul class="flex flex-col gap-4 text-sm text-slate-500 dark:text-slate-400">
+                        <li><a class="hover:text-primary transition-colors" href="#">강의 목록</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">기업용 서비스</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">수강 후기</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">강사 지원</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="font-bold text-slate-900 dark:text-white mb-6 uppercase tracking-wider text-xs">고객지원</h6>
+                    <ul class="flex flex-col gap-4 text-sm text-slate-500 dark:text-slate-400">
+                        <li><a class="hover:text-primary transition-colors" href="#">자주 묻는 질문</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">공지사항</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">1:1 문의</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">커뮤니티 가이드</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="font-bold text-slate-900 dark:text-white mb-6 uppercase tracking-wider text-xs">약관 및 정책
+                    </h6>
+                    <ul class="flex flex-col gap-4 text-sm text-slate-500 dark:text-slate-400">
+                        <li><a class="hover:text-primary transition-colors" href="#">이용약관</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">개인정보처리방침</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">환불규정</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="pt-8 border-t border-slate-200 dark:border-slate-900 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                <p>© 2024 Vibe Coding Inc. All rights reserved.</p>
+                <div class="flex items-center gap-6">
+                    <span>(주)바이브코딩 | 대표자: 김바이브 | 사업자번호: 000-00-00000</span>
+                    <span>서울시 강남구 테크로 123 바이브타워</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

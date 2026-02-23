@@ -30,4 +30,9 @@ public class PostService {
     public List<Post> getAllPosts() {
         return postRepository.findAll();
     }
+
+    public Post getPostByNo(Long no) {
+        return postRepository.findByNo(no)
+                .orElseThrow(() -> new IllegalArgumentException("게시글을 찾을 수 없습니다: " + no));
+    }
 }

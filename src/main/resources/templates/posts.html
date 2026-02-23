@@ -108,7 +108,7 @@
                                 class="border-b border-gray-50 dark:border-zinc-800 last:border-0 hover:bg-gray-50 dark:hover:bg-zinc-800/50 transition-colors">
                                 <td class="py-6 text-gray-500 dark:text-zinc-500" th:text="${post.no}">1</td>
                                 <td class="py-6">
-                                    <a href="#"
+                                    <a th:href="@{/posts/{no}(no=${post.no})}"
                                         class="text-black dark:text-white no-underline hover:text-samsung-blue transition-colors"
                                         th:text="${post.title}">게시글 제목입니다.</a>
                                 </td>

@@ -46,6 +46,7 @@ public class PostService {
     }
 
     public PostResponseDTO findById(Long no) {
+        postRepository.increaseViews(no);
         return PostResponseDTO.from(getPostEntity(no));
     }
 

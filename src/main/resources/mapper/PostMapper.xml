@@ -28,4 +28,8 @@
         DELETE FROM posts WHERE no = #{no}
     </delete>
 
+    <update id="increaseViews">
+        UPDATE posts SET views = views + 1 WHERE no = #{no}
+    </update>
+
 </mapper>

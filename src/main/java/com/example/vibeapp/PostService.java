@@ -47,4 +47,12 @@ public class PostService {
         post.setViews(0);
         postRepository.save(post);
     }
+
+    public void updatePost(Long no, String title, String content) {
+        Post post = getPostByNo(no);
+        post.setTitle(title);
+        post.setContent(content);
+        post.setUpdatedAt(LocalDateTime.now());
+        postRepository.save(post);
+    }
 }

@@ -18,7 +18,8 @@ public class PostRepository {
         if (post.getNo() == null) {
             post.setNo(sequence.incrementAndGet());
         } else {
-            // Update sequence if manual ID is provided during init
+            // Update: Remove existing post with the same NO if it exists
+            posts.removeIf(p -> p.getNo().equals(post.getNo()));
             sequence.set(Math.max(sequence.get(), post.getNo()));
         }
         posts.add(post);

@@ -10,9 +10,11 @@ import java.util.stream.Collectors;
 @Service
 public class PostService {
     private final PostRepository postRepository;
+    private final PostTagRepository postTagRepository;
 
-    public PostService(PostRepository postRepository) {
+    public PostService(PostRepository postRepository, PostTagRepository postTagRepository) {
         this.postRepository = postRepository;
+        this.postTagRepository = postTagRepository;
     }
 
     // Removed in-memory init
@@ -47,18 +49,40 @@ public class PostService {
 
     public PostResponseDTO findById(Long no) {
         postRepository.increaseViews(no);
-        return PostResponseDTO.from(getPostEntity(no));
+        Post post = getPostEntity(no);
+        String tags = postTagRepository.findByPostNo(no).stream()
+                .map(PostTag::getTagName)
+                .collect(Collectors.joining(", "));
+        return PostResponseDTO.from(post, tags);
     }
 
     public void createPost(PostCreateDto createDto) {
         Post post = createDto.toEntity();
         postRepository.save(post);
+        saveTags(post.getNo(), createDto.tags());
     }
 
     public void updatePost(Long no, PostUpdateDto updateDto) {
         Post post = getPostEntity(no);
         updateDto.updateEntity(post);
         postRepository.update(post);
+        
+        postTagRepository.deleteByPostNo(no);
+        saveTags(no, updateDto.tags());
+    }
+
+    private void saveTags(Long postNo, String tagsString) {
+        if (tagsString == null || tagsString.isBlank()) {
+            return;
+        }
+
+        String[] tags = tagsString.split(",");
+        for (String tagName : tags) {
+            String trimmedTag = tagName.trim();
+            if (!trimmedTag.isEmpty()) {
+                postTagRepository.save(new PostTag(null, postNo, trimmedTag));
+            }
+        }
     }
 
     public void deleteById(Long no) {

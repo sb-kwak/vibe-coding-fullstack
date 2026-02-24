@@ -96,10 +96,15 @@
 
             <div
                 class="bg-white dark:bg-zinc-900 rounded-[32px] border border-gray-100 dark:border-zinc-800 shadow-sm p-12 min-h-[400px]">
-                <div class="flex items-center gap-6 mb-8 pb-8 border-b border-gray-50 dark:border-zinc-800">
+                <div class="flex flex-wrap items-center gap-6 mb-8 pb-8 border-b border-gray-50 dark:border-zinc-800">
                     <div class="flex items-center gap-2 text-slate-500 text-sm">
                         <span class="material-symbols-outlined text-lg">visibility</span>
                         <span th:text="${post.views} + ' views'">420 views</span>
+                    </div>
+                    <div th:if="${not #strings.isEmpty(post.tags)}" class="flex flex-wrap gap-2">
+                        <span th:each="tag : ${#strings.arraySplit(post.tags, ',')}"
+                            class="px-3 py-1 bg-gray-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-300 rounded-lg text-xs font-semibold"
+                            th:text="'#' + ${tag.trim()}">#태그</span>
                     </div>
                 </div>
 

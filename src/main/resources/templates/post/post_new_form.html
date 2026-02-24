@@ -112,6 +112,14 @@
                             class="mt-2 text-sm text-rose-500 font-medium">Validation error</p>
                     </div>
 
+                    <div class="mb-10">
+                        <label for="tags" class="block text-sm font-bold text-slate-800 dark:text-slate-200 mb-3">태그
+                            (옵션)</label>
+                        <input type="text" id="tags" th:field="*{tags}"
+                            class="w-full bg-gray-50 dark:bg-zinc-800 border border-gray-100 dark:border-zinc-700 rounded-2xl px-6 py-4 text-slate-900 dark:text-white form-input-focus placeholder:text-slate-400 transition-all"
+                            placeholder="쉼표(,)로 구분하여 입력해 주세요. 예: 바이브, 코딩, 스프링">
+                    </div>
+
                     <div class="flex justify-center gap-4 pt-4">
                         <a th:href="@{/posts}"
                             class="bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-zinc-400 text-sm font-bold px-10 py-3.5 rounded-full hover:bg-slate-200 dark:hover:bg-zinc-700 transition-all no-underline">

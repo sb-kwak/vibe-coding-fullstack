@@ -3,6 +3,8 @@ package com.example.vibeapp.post;
 import com.example.vibeapp.post.dto.*;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,12 +58,14 @@ public class PostService {
         return PostResponseDTO.from(post, tags);
     }
 
+    @Transactional
     public void createPost(PostCreateDto createDto) {
         Post post = createDto.toEntity();
         postRepository.save(post);
         saveTags(post.getNo(), createDto.tags());
     }
 
+    @Transactional
     public void updatePost(Long no, PostUpdateDto updateDto) {
         Post post = getPostEntity(no);
         updateDto.updateEntity(post);

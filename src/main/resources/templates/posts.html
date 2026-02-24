@@ -130,6 +130,34 @@
                         </tbody>
                     </table>
                 </div>
+
+                <!-- Pagination -->
+                <div class="px-10 py-6 border-t border-gray-100 dark:border-zinc-800 flex items-center justify-between">
+                    <div class="text-sm text-gray-500 dark:text-zinc-400">
+                        Page <span class="font-bold text-black dark:text-white" th:text="${currentPage}">1</span> of
+                        <span class="font-bold text-black dark:text-white" th:text="${totalPages}">10</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <a th:if="${currentPage > 1}" th:href="@{/posts(page=${currentPage - 1})}"
+                            class="px-4 py-2 bg-gray-50 dark:bg-zinc-800 text-slate-600 dark:text-zinc-400 text-sm font-bold rounded-xl hover:bg-slate-100 dark:hover:bg-zinc-700 transition-all no-underline flex items-center gap-2">
+                            <span class="material-symbols-outlined text-lg">chevron_left</span>
+                            이전
+                        </a>
+                        <div class="flex items-center gap-1">
+                            <a th:each="p : ${#numbers.sequence(1, totalPages)}" th:href="@{/posts(page=${p})}"
+                                th:text="${p}"
+                                class="w-10 h-10 flex items-center justify-center rounded-xl text-sm font-bold transition-all no-underline"
+                                th:classappend="${p == currentPage} ? 'bg-samsung-blue text-white' : 'text-slate-500 hover:bg-gray-50 dark:hover:bg-zinc-800'">
+                                1
+                            </a>
+                        </div>
+                        <a th:if="${currentPage < totalPages}" th:href="@{/posts(page=${currentPage + 1})}"
+                            class="px-4 py-2 bg-gray-50 dark:bg-zinc-800 text-slate-600 dark:text-zinc-400 text-sm font-bold rounded-xl hover:bg-slate-100 dark:hover:bg-zinc-700 transition-all no-underline flex items-center gap-2">
+                            다음
+                            <span class="material-symbols-outlined text-lg">chevron_right</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

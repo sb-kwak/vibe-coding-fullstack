@@ -27,10 +27,25 @@ public class PostService {
         }
     }
 
-    public List<Post> getAllPosts() {
+    private List<Post> getAllPosts() {
         return postRepository.findAll().stream()
                 .sorted((p1, p2) -> p2.getCreatedAt().compareTo(p1.getCreatedAt()))
                 .toList();
+    }
+
+    public List<Post> getPaginatedPosts(int page, int size) {
+        List<Post> allPosts = getAllPosts();
+        int fromIndex = (page - 1) * size;
+        if (fromIndex >= allPosts.size()) {
+            return List.of();
+        }
+        int toIndex = Math.min(fromIndex + size, allPosts.size());
+        return allPosts.subList(fromIndex, toIndex);
+    }
+
+    public int getTotalPages(int size) {
+        int totalPosts = postRepository.findAll().size();
+        return (int) Math.ceil((double) totalPosts / size);
     }
 
     public Post getPostByNo(Long no) {

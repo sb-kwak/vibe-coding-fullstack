@@ -8,3 +8,8 @@ bin/
 *.lock
 out/
 .DS_Store
+
+# H2 Database
+/data/
+*.mv.db
+*.trace.db

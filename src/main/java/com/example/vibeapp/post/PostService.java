@@ -15,19 +15,7 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    @PostConstruct
-    public void init() {
-        for (int i = 1; i <= 10; i++) {
-            postRepository.save(new Post(
-                (long) i,
-                "게시글 제목 " + i,
-                "게시글 내용 " + i + " 입니다. 바이브코딩과 함께라면 코딩이 즐거워집니다.",
-                LocalDateTime.now().minusDays(10 - i),
-                LocalDateTime.now().minusDays(10 - i),
-                i * 10
-            ));
-        }
-    }
+    // Removed in-memory init
 
     private List<Post> getAllPosts() {
         return postRepository.findAll().stream()
@@ -69,7 +57,7 @@ public class PostService {
     public void updatePost(Long no, PostUpdateDto updateDto) {
         Post post = getPostEntity(no);
         updateDto.updateEntity(post);
-        postRepository.save(post);
+        postRepository.update(post);
     }
 
     public void deleteById(Long no) {

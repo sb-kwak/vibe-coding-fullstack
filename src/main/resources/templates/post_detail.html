@@ -117,7 +117,7 @@
                     <span class="material-symbols-outlined text-lg">list</span>
                     목록으로 돌아가기
                 </a>
-                <a href="#"
+                <a th:href="@{/posts/{no}/edit(no=${post.no})}"
                     class="bg-samsung-blue text-white text-sm font-bold px-8 py-3 rounded-full hover:opacity-90 transition-all no-underline flex items-center gap-2">
                     <span class="material-symbols-outlined text-lg">edit</span>
                     수정하기

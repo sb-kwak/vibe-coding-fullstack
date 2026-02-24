@@ -41,3 +41,24 @@ dependencies {
     // 최소 기능 프로젝트로 기본 의존성 없음
 }
 ```
+
+## 5. 현재 구현 상태 (Current Implementation Status)
+
+### 주요 기능 (Core Features)
+- **홈 페이지**: 프리미엄 테마가 적용된 메인 대시보드
+- **게시판 CRUD**:
+  - 게시글 목록 조회 (Pagination: 페이지당 5개)
+  - 게시글 상세 조회 (조회수 및 생성/수정일 정보 포함)
+  - 새 게시물 작성 및 기존 게시물 수정/삭제
+- **디자인 및 UI**:
+  - Tailwind CSS 기반의 모던 UI
+  - 다크 모드(Dark Mode) 기본 지원 및 명암 대비 최적화
+  - 프리미엄 히어로 이미지 적용
+
+### 아키텍처 및 관례 (Architecture & Conventions)
+- **기능 기반 구조 (Feature-based Structure)**:
+  - Java 패키지 및 HTML 템플릿을 `home`, `post` 등 기능 단위로 분리하여 관리
+- **표준 명명 규칙**:
+  - 실무 관례를 따른 메서드 명명 (`findById`, `createPost`, `updatePost`, `deleteById` 등)
+- **데이터 저장**:
+  - 인메모리 저장소 (`CopyOnWriteArrayList`) 및 원자적 시퀀스 (`AtomicLong`) 사용

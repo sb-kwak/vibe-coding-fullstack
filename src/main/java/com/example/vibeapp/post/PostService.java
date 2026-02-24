@@ -1,9 +1,11 @@
 package com.example.vibeapp.post;
 
+import com.example.vibeapp.post.dto.*;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PostService {
@@ -33,14 +35,16 @@ public class PostService {
                 .toList();
     }
 
-    public List<Post> getPaginatedPosts(int page, int size) {
+    public List<PostListDto> getPaginatedPosts(int page, int size) {
         List<Post> allPosts = getAllPosts();
         int fromIndex = (page - 1) * size;
         if (fromIndex >= allPosts.size()) {
             return List.of();
         }
         int toIndex = Math.min(fromIndex + size, allPosts.size());
-        return allPosts.subList(fromIndex, toIndex);
+        return allPosts.subList(fromIndex, toIndex).stream()
+                .map(PostListDto::from)
+                .collect(Collectors.toList());
     }
 
     public int getTotalPages(int size) {
@@ -48,26 +52,23 @@ public class PostService {
         return (int) Math.ceil((double) totalPosts / size);
     }
 
-    public Post findById(Long no) {
+    protected Post getPostEntity(Long no) {
         return postRepository.findById(no)
                 .orElseThrow(() -> new IllegalArgumentException("게시글을 찾을 수 없습니다: " + no));
     }
 
-    public void createPost(String title, String content) {
-        Post post = new Post();
-        post.setTitle(title);
-        post.setContent(content);
-        post.setCreatedAt(LocalDateTime.now());
-        post.setUpdatedAt(null);
-        post.setViews(0);
+    public PostResponseDTO findById(Long no) {
+        return PostResponseDTO.from(getPostEntity(no));
+    }
+
+    public void createPost(PostCreateDto createDto) {
+        Post post = createDto.toEntity();
         postRepository.save(post);
     }
 
-    public void updatePost(Long no, String title, String content) {
-        Post post = findById(no);
-        post.setTitle(title);
-        post.setContent(content);
-        post.setUpdatedAt(LocalDateTime.now());
+    public void updatePost(Long no, PostUpdateDto updateDto) {
+        Post post = getPostEntity(no);
+        updateDto.updateEntity(post);
         postRepository.save(post);
     }
 

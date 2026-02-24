@@ -1,13 +1,28 @@
 package com.example.vibeapp.post;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "posts")
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long no;
+
+    @Column(nullable = false, length = 200)
     private String title;
+
+    @Column(nullable = false, columnDefinition = "CLOB")
     private String content;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @Column(defaultValue = "0")
     private Integer views;
 
     public Post() {}

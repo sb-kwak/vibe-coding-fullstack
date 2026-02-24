@@ -13,20 +13,24 @@
 - **언어**: Java
 - **JDK**: JDK 25 이상
 - **프레임워크**: Spring Boot 4.0.1 이상
-- **빌드 도구**: Gradle 9.3.0 이상 (Groovy DSL)
+- **빌드 도구**: Gradle 9.3.1 이상 (Groovy DSL)
+- **데이터베이스**: H2 Database (File Mode: `./data/testdb`)
+- **ORM/Persistence**: MyBatis (SQL Mapper)
 
 ## 3. 설정 및 플러그인
 - **플러그인**:
   - `io.spring.dependency-management`: Spring Boot 버전에 맞춘 의존성 관리
-- **의존성 (Dependencies)**:
-  - 없음 (최소 기능 프로젝트)
+- **핵심 의존성 (Dependencies)**:
+  - `org.mybatis.spring.boot:mybatis-spring-boot-starter`: MyBatis 통합
+  - `com.h2database:h2`: 데이터베이스 엔진
+  - `org.springframework.boot:spring-boot-starter-validation`: 데이터 검증
 
 ## 4. 빌드 설정 (build.gradle 예시)
 ```groovy
 plugins {
     id 'java'
     id 'org.springframework.boot' version '4.0.1'
-    id 'io.spring.dependency-management' version '1.1.7' // Boot 버전에 호환되는 버전
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'com.example'
@@ -38,7 +42,12 @@ repositories {
 }
 
 dependencies {
-    // 최소 기능 프로젝트로 기본 의존성 없음
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
+    runtimeOnly 'com.h2database:h2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 ```
 
@@ -50,15 +59,19 @@ dependencies {
   - 게시글 목록 조회 (Pagination: 페이지당 5개)
   - 게시글 상세 조회 (조회수 및 생성/수정일 정보 포함)
   - 새 게시물 작성 및 기존 게시물 수정/삭제
+- **태그 (Tags) 시스템**:
+  - 쉼표(,) 구분 기반 태그 입력 및 상세 페이지 표시
+  - `POST_TAGS` 테이블을 통한 독립적 데이터 관리 및 Cascade 삭제 지원
 - **디자인 및 UI**:
   - Tailwind CSS 기반의 모던 UI
-  - 다크 모드(Dark Mode) 기본 지원 및 명암 대비 최적화
-  - 프리미엄 히어로 이미지 적용
+  - 다크 모드(Dark Mode) 지원 및 프리미엄 히어로 이미지 적용
 
 ### 아키텍처 및 관례 (Architecture & Conventions)
+- **비즈니스 로직**:
+  - `@Transactional`을 통한 데이터 원자성 보장 (게시글 & 태그 통합 처리)
+  - DTO (Java Record) 패턴을 통한 데이터 전송 및 유효성 검증 분리
+- **데이터 저장 및 영속성**:
+  - H2 파일 데이터베이스 연동 및 `schema.sql` 기반 자동 테이블 생성
+  - MyBatis SQL Mapper (XML)를 통한 복잡한 쿼리 관리
 - **기능 기반 구조 (Feature-based Structure)**:
-  - Java 패키지 및 HTML 템플릿을 `home`, `post` 등 기능 단위로 분리하여 관리
-- **표준 명명 규칙**:
-  - 실무 관례를 따른 메서드 명명 (`findById`, `createPost`, `updatePost`, `deleteById` 등)
-- **데이터 저장**:
-  - 인메모리 저장소 (`CopyOnWriteArrayList`) 및 원자적 시퀀스 (`AtomicLong`) 사용
+  - 패키지 및 템플릿을 기능별(`post`, `home` 등)로 분리

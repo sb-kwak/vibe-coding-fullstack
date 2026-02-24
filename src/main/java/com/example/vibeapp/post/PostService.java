@@ -48,12 +48,12 @@ public class PostService {
         return (int) Math.ceil((double) totalPosts / size);
     }
 
-    public Post getPostByNo(Long no) {
-        return postRepository.findByNo(no)
+    public Post findById(Long no) {
+        return postRepository.findById(no)
                 .orElseThrow(() -> new IllegalArgumentException("게시글을 찾을 수 없습니다: " + no));
     }
 
-    public void addPost(String title, String content) {
+    public void createPost(String title, String content) {
         Post post = new Post();
         post.setTitle(title);
         post.setContent(content);
@@ -64,14 +64,14 @@ public class PostService {
     }
 
     public void updatePost(Long no, String title, String content) {
-        Post post = getPostByNo(no);
+        Post post = findById(no);
         post.setTitle(title);
         post.setContent(content);
         post.setUpdatedAt(LocalDateTime.now());
         postRepository.save(post);
     }
 
-    public void deletePost(Long no) {
-        postRepository.deleteByNo(no);
+    public void deleteById(Long no) {
+        postRepository.deleteById(no);
     }
 }
